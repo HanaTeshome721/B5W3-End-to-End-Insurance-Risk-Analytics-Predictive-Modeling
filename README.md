@@ -84,7 +84,6 @@ The purpose of this task is to explore and understand the structure, quality, an
 
 ---
 
-**Next Step ➡️**  
-Proceed to Task 2: Hypothesis Testing and Risk Segmentation.
+
 
 

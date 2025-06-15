@@ -1,2 +1,4 @@
 .venv
-/data
+# Ignore raw data files (but allow .dvc tracking files)
+data/*.parquet
+!data/*.dvc

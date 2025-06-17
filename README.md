@@ -1,89 +1,75 @@
-# Task 1: Data Understanding & Exploratory Data Analysis (EDA)
+ Task 2: Data Version Control (DVC)
+📌 Task Objective
+Establish a reproducible and auditable data pipeline using DVC (Data Version Control) to ensure that all datasets used in the project are version-controlled, traceable, and reproducible—meeting compliance standards required in regulated industries like finance and insurance.
 
-## 📌 Objective
+✅ Steps Completed
+1. 📦 DVC Installation
+bash
+Copy
+Edit
+pip install dvc
+DVC was successfully installed in the project environment.
 
-The purpose of this task is to explore and understand the structure, quality, and insights within the historical insurance dataset provided by AlphaCare Insurance Solutions (ACIS). This analysis sets the foundation for deeper statistical modeling and machine learning in subsequent tasks.
+2. 🏁 DVC Initialization
+bash
+Copy
+Edit
+dvc init
+git commit -m "Initialize DVC for project tracking"
+This created the .dvc/ directory and updated .gitignore to prevent large files from being pushed to Git.
 
----
+3. 🗃️ Local Remote Storage Setup
+bash
+Copy
+Edit
+mkdir ../dvc-storage
+dvc remote add -d localstorage ../dvc-storage
+A local DVC remote was created and configured for offline reproducibility.
 
+4. 📂 Data Tracking with DVC
+bash
+Copy
+Edit
+dvc add data/MachineLearningRating_v3.parquet
+The main dataset was added to DVC, generating a .dvc file to track its metadata.
 
----
+5. ✅ Committing DVC Files to Git
+bash
+Copy
+Edit
+git add data/MachineLearningRating_v3.parquet.dvc .gitignore .dvc/config
+git commit -m "Track dataset using DVC and configure local remote"
+DVC metadata and tracking files were committed to the Git repository.
 
-## 📋 Key Questions Addressed
+6. 🚀 Data Push to Remote
+bash
+Copy
+Edit
+dvc push
+Dataset successfully pushed to the configured local remote storage.
 
-- What is the overall **Loss Ratio** and how does it vary by `Province`, `VehicleType`, and `Gender`?
-- Are there outliers in **TotalClaims** or **CustomValueEstimate** that could skew analysis?
-- Are there **temporal trends** in claim frequency or severity?
-- Which **vehicle makes/models** are associated with the highest and lowest claim amounts?
+7. ♻️ Reproducibility Test (Optional)
+To reproduce the data from a fresh clone:
 
----
+bash
+Copy
+Edit
+git clone <repo-url>
+cd <repo>
+dvc pull
+This command restores the exact dataset version from the remote, ensuring reproducibility.
 
-## 🧪 Key Analyses Performed
+📂 DVC Tracked Files
+data/MachineLearningRating_v3.parquet.dvc — Metadata for the dataset.
 
-### ✅ Data Summarization
-- Descriptive stats for financial variables (`TotalPremium`, `TotalClaims`, etc.)
-- Dtype check and column formatting
-- Missing value diagnostics
+.dvc/config — Remote storage configuration.
 
-### ✅ Univariate Analysis
-- Histograms for numeric columns
-- Bar charts for categorical variables
+.gitignore — Prevents raw data from being pushed to Git.
 
-### ✅ Bivariate & Multivariate Analysis
-- Correlation heatmaps
-- Trend analysis: Monthly claims vs premiums
-- Zipcode-level scatter plots
+🧪 Notes & Compliance
+✅ No raw data is pushed to GitHub.
 
-### ✅ Outlier Detection
-- Box plots for key numerical fields
+✅ Data versioning is fully functional.
 
-### ✅ Visual Insights
-- 3 creative and insightful visualizations highlighting key patterns
-
----
-
-## 🧠 Key Insights
-
-- Provinces like **Gauteng** and **Western Cape** show significant variance in loss ratios.
-- Certain car **Makes/Models** consistently show higher claims — e.g., high-powered sedans and SUVs.
-- Some **gender/location** groups show statistically significant risk differences.
-
-> These insights will inform premium optimization strategies and targeted marketing.
-
----
-
-## 🛠️ Tools & Libraries
-
-- `pandas`, `numpy`
-- `matplotlib`, `seaborn`
-- `pyarrow` for Parquet handling
-
----
-
-## 📎 Notes
-
-- The original `.txt` file was **converted to Parquet** to optimize performance and memory usage.
-- Git practices followed: committed early and often with meaningful messages on `task-1` branch.
-
----
-
-## 🧾 References
-
-- Insurance Glossary: [Cornerstone Insurance Brokers](https://www.cornerstoneinsurance.ca/blog/insurance-terms/)
-- A/B Testing: [Optimizely A/B Testing Guide](https://www.optimizely.com/optimization-glossary/ab-testing/)
-- Statistical Tests: [SciPy Stats](https://docs.scipy.org/doc/scipy/reference/stats.html)
-
----
-
-## ✅ Task Completion Checklist
-
-- [x] Data loaded and converted to Parquet
-- [x] EDA notebook created and committed to GitHub (`task-1` branch)
-- [x] Summary stats and plots saved
-- [x] README documented and included
-
----
-
-
-
+✅ dvc pull restores datasets consistently.
 
